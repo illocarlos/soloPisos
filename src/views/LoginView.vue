@@ -1,21 +1,22 @@
 <script setup>
 // llamamos este paquete de validacion
-import { useField, useForm } from 'vee-validate'
-import{ useAuthStore }from'@/stores/auth'
-const useAuth = useAuthStore()
-
+import {useForm,useField} from 'vee-validate'
 // usamos un validator es como un helper y para usarlo como buena practica lo llamamos de la misma forma en la que debemos llamar
 //en el useForm ya que se nombrade la misma forma
-import { loginSchema as validationSchema } from '../validation/loginSchema'
+import { loginSchema as validationSchema } from '@/validation/loginSchema'
+
+import{ useAuthStore }from'@/stores/auth'
+
 //aqui lo mandamos del submit al validacion que creamos y esta directamente asociada al formulario con la misma palabra reservada 
 //esto es lo mismo como useForm({validationSchema:loginSchema })
-const { handleSubmit } = useForm({validationSchema })
+const { handleSubmit } = useForm({ validationSchema })
+const useAuth = useAuthStore()
 
 const email = useField('email')
 const password = useField('password')
 
-const submit = handleSubmit((values) => {
-  useAuth.login(values)
+const submit = handleSubmit((value) => {
+  useAuth.login(value)
  
 })
 </script>
@@ -32,9 +33,15 @@ const submit = handleSubmit((values) => {
      tag="h2">
   iniciar sesion
     </v-card-title>
+      <v-alert
+      v-if="useAuth.hasError"
+        type="error"
+        :text="useAuth.errroMssg"
+      ></v-alert>
     <v-form>
       <!-- si revisamor vuedeveltols vemos que debemos introducirnos en el objeto para el model en value.value y para 
       que se aplique el error que previamente creamos el validation/loginShema.js tenemos que llamarlo como errorMessage.value  -->
+      
       <v-text-field
       class="mt-5"
       type="email"
