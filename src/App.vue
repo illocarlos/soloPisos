@@ -33,6 +33,7 @@ const { isAuth } = storeToRefs(useAuth)
             </template>
       <template
       v-slot:append>
+      <!-- generamos una condicion si esta logeado que aparezca unos botones y si no otro esto son rutas que te mandan a otro view -->
       <div
         v-if="isAuth">
     <v-btn

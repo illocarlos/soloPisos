@@ -16,6 +16,7 @@ import App from './App.vue'
 import router from './router'
 
 import './assets/main.css'
+// paquete de iconos de vuetify
 import '@mdi/font/css/materialdesignicons.css'
 
 

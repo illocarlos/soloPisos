@@ -14,6 +14,8 @@ export const useAuthStore = defineStore('auth', () => {
         'auth/too-many-requests': 'Too many attempts. Please wait 5 minutes.'
     }
 
+    // onmounted monta al usuario que este logeado cuando un usuario inicia sesion se actualiza el objeto del usuario
+    //asegurando que loggedInUser refleje al usuario en copncreto 
     onMounted(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -36,6 +38,11 @@ export const useAuthStore = defineStore('auth', () => {
                 errroMssg.value = errorCodes[error.code]
             });
     }
+
+    // en esta funcion cerramos session  y tenemos la palabra reservada signOut que es de firebase creamos una promesa 
+    //y pasamos el loggedinuser a null para utilizarlo por ejemplo en la barrra de navegacion que no se vea rutas al no estar logeado
+    //es decir signOut cierra sesion en firebase y loggedinuser cierra sesion en la parte visual
+    //y mandamos al usuario a la pagina de login con router.push
     function logOut() {
         signOut(auth).then(() => {
             loggedInUser.value = null
@@ -47,6 +54,8 @@ export const useAuthStore = defineStore('auth', () => {
     const hasError = computed(() => {
         return errroMssg.value !== ""
     })
+    // este computed lo usamos para visualizar la reactividad de loggedInUser 
+    // (computed se suele usar para observar una reactividad concreta) en este caso es ver si el usuario esta logeado o no(true or false)
     const isAuth = computed(() => {
         return loggedInUser.value
     })
