@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { storeToRefs } from 'pinia';
-import { useAuthStore } from './stores/auth'
+import { useAuthStore } from '@/stores/auth'
 
 // dijimos que no se podia destructurar el store, pero si lo podemos hacer para las partes reactivas(ref, reactive)
 //con storeToRefs podemos hacerlo y asi llamamos unicamente esa reactividad concreta 

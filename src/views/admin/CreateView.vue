@@ -1,5 +1,18 @@
 <script setup>
+import { useForm, useField } from 'vee-validate'
+import{ imageSchema , validationSchema }from '@/validation/propertiesSchema'
+
+const { handleSubmit } = useForm({
+      validationSchema: {
+        ...validationSchema,
+        ...imageSchema
+    }
+})
 const countRooms = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const submit = handleSubmit((values) => {
+  
+})
 
 </script>
 
@@ -15,7 +28,9 @@ tag="h2">
   <v-form class="mt-10">
 <v-text-field
 class="mb-5"
-label="Title of propertie"/>
+label="Title of propertie"
+v-model="title.alue.value"
+:error-message="title.errorMessage.value"/>
 
 <v-file-input
 accept="image/jpeg"
