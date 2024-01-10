@@ -1,18 +1,26 @@
 <script setup>
+// importamos validaciones para los formularios 
 import { useForm, useField } from 'vee-validate';
+// importamos las validaciones que tenemos en un help llamado validation
 import { imageSchema, validationSchema } from '@/validation/propertiesSchema';
+// mandamos la funcion tipo post de firebase a un stores
 import { usePropertiesStore } from '@/stores/properties'
 import useImage from '@/composables/useImage'
-import "leaflet/dist/leaflet.css";
+// mandamos a un composable informacion y funciones que usaremos en varios view y asi no hardcodeamos 
 import useLocationMap from '@/composables/useLocationMap'
+// llamaos al paquete de npm geolocalizador es gratuito y podemos hacer toda las llamadas que queramos a diferencia de googlemap
+import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 
-
+// para mandar el objeto creado del formulario a este store
 const useProperties = usePropertiesStore()
+
 const { zoom, center, pin } = useLocationMap()
+// creamos la imagen y su url
 const { uploadImage,image,url } = useImage()
 
 const countRooms = [1, 2, 3, 4, 5, 6, 7, 8];
+
 const { handleSubmit } = useForm({
     validationSchema: {
         ...validationSchema,
@@ -33,8 +41,8 @@ const yard = useField('yard', null, {
     initialValue:false
 });
 
-const submit = handleSubmit( (values,url) => {
-    useProperties.createProperties(values,url)
+const submit = handleSubmit( (values) => {
+    useProperties.createProperties(values,url, center)
 });
 </script>
 

@@ -8,7 +8,7 @@ export const usePropertiesStore = defineStore('properties', () => {
     const { url } = useImage()
     const db = useFirestore(); // Inicializa Firestore usando vuefire
     const router = useRouter(); // Inicializa el enrutador si estás usando Vue Router
-    async function createProperties(values, url) {
+    async function createProperties(values, url, center) {
 
 
         const { photo, ...properties } = values;
@@ -17,7 +17,8 @@ export const usePropertiesStore = defineStore('properties', () => {
             // mandamos a firebase el objeto creado del formulario
             const docRef = await addDoc(collection(db, 'properties'), {
                 ...properties,
-                photo: url.value
+                photo: url.value,
+                ubication: center.value
             });
             // y si tenemos objeto creado nos redirecciona 
             if (docRef.id) {

@@ -2,8 +2,8 @@ import { ref } from 'vue'
 
 export default function useLocationMap() {
 
-    const zoom = ref(17)
-    const center = ref([25.767424, -80.192053])
+    const zoom = ref(8)
+    const center = ref([40.3450, -3.7132])
 
     function pin(e) {
         const marker = e.target.getLatLng()
