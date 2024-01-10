@@ -1,14 +1,18 @@
 <script setup>
 import { useForm, useField } from 'vee-validate';
-import { addDoc, collection } from "firebase/firestore";
-import { useFirestore } from 'vuefire';
 import { imageSchema, validationSchema } from '@/validation/propertiesSchema';
-import { useRouter } from "vue-router";
+import { usePropertiesStore } from '@/stores/properties'
+import useImage from '@/composables/useImage'
+import "leaflet/dist/leaflet.css";
+import useLocationMap from '@/composables/useLocationMap'
+import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 
-const router=useRouter()
-const db = useFirestore();
+
+const useProperties = usePropertiesStore()
+const { zoom, center, pin } = useLocationMap()
+const { uploadImage,image,url } = useImage()
+
 const countRooms = [1, 2, 3, 4, 5, 6, 7, 8];
-
 const { handleSubmit } = useForm({
     validationSchema: {
         ...validationSchema,
@@ -29,16 +33,8 @@ const yard = useField('yard', null, {
     initialValue:false
 });
 
-
-const submit = handleSubmit(async (values) => {
-    console.log("values")
-    const { photo, ...properties } = values;
-    const docRef = await addDoc(collection(db, "properties"), {
-        ...properties
-    });
-    if (docRef.id) {
-        router.push({name:'admin-properties'})
-    }
+const submit = handleSubmit( (values,url) => {
+    useProperties.createProperties(values,url)
 });
 </script>
 
@@ -65,7 +61,11 @@ prepend-icon="mdi-camera"
 class="mb-5"
     v-model="photo.value.value"
     :error-messages="photo.errorMessage.value"
+    @change="uploadImage"
 />
+<div class="my-5" v-if="image">
+<img class="w-50" :src="image" alt="image">
+</div>
     <v-text-field
     class="mb-5"
     label="Price"
@@ -125,6 +125,26 @@ md="6"
                       :error-messages="yard.errorMessage.value"/>
                 </v-col>
         </v-row>
+
+             <h2 class="font-weight-bold text-center my-5">property location</h2>
+                <div class="pb-10">
+                    <div style="height:400px">
+                        <LMap 
+                            v-model:zoom="zoom" 
+                            :center="center" 
+                            :use-global-leaflet="false" 
+                        >
+                            <LMarker
+                                :lat-lng="center"
+                                draggable
+                                @moveend="pin"
+                            />
+                            <LTileLayer
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            ></LTileLayer>
+                        </LMap>
+                    </div>
+                </div>
         <v-btn
         block
         color="grey"
