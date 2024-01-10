@@ -1,7 +1,7 @@
 export const validationSchema = {
     title(value) {
         if (value?.length >= 6) return true
-        return 'El titulo de la propiedad es obligatorio o muy corto'
+        return 'The property title is mandatory or very short'
     },
     price(value) {
         /*
@@ -10,29 +10,25 @@ export const validationSchema = {
             $ - Representa el final de la cadena.
         */
         if (/^[0-9]+$/.test(value)) return true
-        return 'El Precio solo deben ser números'
+        return 'Price should only be numbers'
     },
     rooms(value) {
         if (value) return true
-        return 'Selecciona una Cantidad'
+        return 'Select a Quantity'
     },
     wc(value) {
         if (value) return true
-        return 'Selecciona una Cantidad'
-    },
-    estacionamiento(value) {
-        if (value) return true
-        return 'Selecciona una Cantidad'
+        return 'Select a Quantity'
     },
     description(value) {
         if (value) return true
-        return 'Agrega una Descripción'
+        return 'Add a description'
     }
 }
 
 export const imageSchema = {
     photo(value) {
         if (value) return true
-        return 'La Imagen es Obligatoria'
+        return 'the image is mandatory'
     },
 }

@@ -1,25 +1,45 @@
 <script setup>
-import { useForm, useField } from 'vee-validate'
-import{ imageSchema , validationSchema }from '@/validation/propertiesSchema'
+import { useForm, useField } from 'vee-validate';
+import { addDoc, collection } from "firebase/firestore";
+import { useFirestore } from 'vuefire';
+import { imageSchema, validationSchema } from '@/validation/propertiesSchema';
+import { useRouter } from "vue-router";
+
+const router=useRouter()
+const db = useFirestore();
+const countRooms = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const { handleSubmit } = useForm({
-      validationSchema: {
+    validationSchema: {
         ...validationSchema,
         ...imageSchema
     }
-})
-const countRooms = [1, 2, 3, 4, 5, 6, 7, 8];
-const title = useField('title')
-const photo = useField('photo')
-const wc = useField('wc')
-const price = useField('price')
-const rooms = useField('rooms')
-const description = useField('description')
+});
 
-const submit = handleSubmit((values) => {
-  
-})
+const title = useField('title');
+const photo = useField('photo');
+const wc = useField('wc');
+const price = useField('price');
+const rooms = useField('rooms');
+const description = useField('description');
+const pool = useField('pool', null, {
+    initialValue:false
+});
+const yard = useField('yard', null, {
+    initialValue:false
+});
 
+
+const submit = handleSubmit(async (values) => {
+    console.log("values")
+    const { photo, ...properties } = values;
+    const docRef = await addDoc(collection(db, "properties"), {
+        ...properties
+    });
+    if (docRef.id) {
+        router.push({name:'admin-properties'})
+    }
+});
 </script>
 
 <template>
@@ -57,7 +77,7 @@ class="mb-5"
     <v-row>
 <v-col
 cols="12"
-md="4"
+md="6"
 >
     <v-select
     class="mb-5"
@@ -68,7 +88,7 @@ md="4"
 </v-col>
 <v-col
     cols="12"
-    md="4"
+    md="6"
     >
       <v-select
         class="mb-5"
@@ -77,15 +97,7 @@ md="4"
          v-model="wc.value.value"
             :error-messages="wc.errorMessage.value"/>
         </v-col>
-        <v-col
-        cols="12"
-    md="4">
-
-          <v-select
-        class="mb-5"
-        label="available rooms"
-        :items="countRooms"/>
-        </v-col>
+   
           </v-row>
                 <v-textarea
                 class="mb-5"
@@ -99,19 +111,24 @@ md="4"
                 md="6">
                     <v-checkbox
                     class="mb-5"
-                    label="pool"/>
+                    label="pool"
+                     v-model="pool.value.value"
+                      :error-messages="pool.errorMessage.value"/>
                 </v-col>
                 <v-col
                 cols="12"
                 md="6">
                     <v-checkbox
                     class="mb-5"
-                    label="yard"/>
+                    label="yard"
+                     v-model="yard.value.value"
+                      :error-messages="yard.errorMessage.value"/>
                 </v-col>
         </v-row>
         <v-btn
         block
-        color="grey">
+        color="grey"
+        @click="submit">
             add propertie
         </v-btn>
   </v-form>
