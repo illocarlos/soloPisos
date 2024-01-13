@@ -27,6 +27,7 @@ const { uploadImage, images, imageUrls, $reset } = useImage()
 const countRooms = [1, 2, 3, 4, 5, 6, 7, 8];
 
  preffixed.value= useCountries.prefixed
+ pruebaimagen.value = imageUrls
 
 const { handleSubmit } = useForm({
     validationSchema: {
@@ -34,7 +35,6 @@ const { handleSubmit } = useForm({
         ...imageSchema
     }
 });
-pruebaimagen.value = imageUrls
 // tenemos que crear en el useField cada uno de los modelos del formulario para que los registre y los valide el paquete veevalidate
 //es una forma sencilla de crear formularios con vue 
 const title = useField('title');
@@ -51,6 +51,7 @@ const pool = useField('pool', null, {
 const yard = useField('yard', null, {
     initialValue:false
 });
+
 watch(() => phone.value.value, (newValue) => {
     // Utiliza la función de ayuda para formatear el número
     phone.value.value = formatPhoneNumber(newValue);
@@ -58,7 +59,11 @@ watch(() => phone.value.value, (newValue) => {
 
  function resetFileInput() {
      $reset()
-    }
+ }
+    
+const prueba = () => {
+    console.log(imageUrls)
+}
 
 const submit = handleSubmit((values) => {
    
@@ -221,6 +226,12 @@ md="3"
         @click="submit">
             add propertie
         </v-btn>
+            <v-btn
+            block
+            color="grey"
+            @click="prueba">
+                prueba
+            </v-btn>
   </v-form>
     </v-card>
 </template>

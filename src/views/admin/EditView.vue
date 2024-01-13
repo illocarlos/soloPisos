@@ -1,27 +1,35 @@
 <script setup>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter  } from 'vue-router';
 import { useDocument, useFirestore } from 'vuefire';
 import { useField, useForm } from 'vee-validate'
 import useImage from '@/composables/useImage'
 import useLocationMap from '@/composables/useLocationMap'
 import { validationSchema } from '@/validation/propertiesSchema'
+import { useCountriesStore } from '@/stores/prefixedCountrie'
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
-import { doc } from 'firebase/firestore';
-import { watch } from 'vue';
+import { doc, updateDoc  } from 'firebase/firestore';
+import { watch, ref } from 'vue';
 
+const { uploadImage, images, imageUrls, $reset } = useImage()
+const { zoom, center, pin } = useLocationMap()
+const useCountries = useCountriesStore()
 
+// recoge la informacion necesaria en este caso para editar
 const route = useRoute();
+// redirecciona al usuaurio
+const router = useRouter()
+
+// Obtener la Propiedad al editar
 const db = useFirestore(); 
 const docRef = doc(db, 'properties', route.params.id)
+const preffixed = ref([])
+const pruebaimagen = ref([])
 
 
-
-
+// para usarlo como item en los formularios uno es prefijos otro simple
 const items = [1, 2, 3, 4, 5]
-
-const { url, uploadImage, image } = useImage()
-const { zoom, center, pin } = useLocationMap()
+preffixed.value = useCountries.prefixed
 
 const { handleSubmit } = useForm({ validationSchema });
 
@@ -39,7 +47,7 @@ const pool = useField('pool', null, {
 const yard = useField('yard', null, {
   initialValue: false
 });
-
+pruebaimagen.value = imageUrls
 const propertieId = useDocument(docRef)
 watch(propertieId, (propertieId) => {
   title.value.value = propertieId.title
@@ -52,12 +60,24 @@ watch(propertieId, (propertieId) => {
   description.value.value = propertieId.description
   pool.value.value = propertieId.pool
   yard.value.value = propertieId.yard
-      center.value= propertieId.ubication
+    center.value = propertieId.ubication
 })
 
-const submit = handleSubmit((values) => {
+const submit = handleSubmit(async values => {
+  const { ...propertieId } = values
 
-});
+  console.log(center.value)
+   
+  const data = {
+    ...propertieId,
+    ubication: center.value
+  }
+    await updateDoc(docRef, data)
+  
+  router.push({ name: 'home' })
+
+})
+
 </script>
 <template>
   <v-card max-width="800" flat class="mx-auto">
@@ -67,24 +87,6 @@ const submit = handleSubmit((values) => {
     <v-form class="mt-10">
       <v-text-field class="mb-5" label="Title of propertie" v-model="title.value.value"
         :error-messages="title.errorMessage.value" />
-
-      <v-file-input accept="image/jpeg" label="photo" prepend-icon="mdi-camera" class="mb-5" v-model="photo.value.value"
-        :error-messages="photo.errorMessage.value" @change="uploadImage" @click:clear="resetFileInput" multiple />
-
-      <!-- Display uploaded images -->
-
-
-      <div class="my-5" v-if="pruebaimagen">
-        <v-row>
-
-          <v-col cols="12" md="4" v-for="(image, index) in pruebaimagen.value" :key="index">
-            <v-card flat class="w-88 h-40">
-              <img class="w-100 h-70" :src="image" alt="image" />
-            </v-card>
-          </v-col>
-        </v-row>
-      </div>
-
 
       <v-text-field class="mb-5" label="Price" v-model="price.value.value" :error-messages="price.errorMessage.value" />
       <v-row>

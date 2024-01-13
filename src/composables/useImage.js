@@ -16,25 +16,41 @@ export default function useImages() {
         return storageRef(storage, `/properties/${uid()}.jpg`)
     }
 
+
     async function uploadImages(files) {
-        const uploadPromises = []
+        const uploadPromises = [];
 
         for (const file of files) {
-            const storageRefPath = generateStorageRef()
-            const { upload } = useStorageFile(storageRefPath)
+            const storageRefPath = generateStorageRef();
+            const { upload } = useStorageFile(storageRefPath);
 
             try {
-                await upload(file)
-                const downloadUrl = await getDownloadURL(storageRefPath)
-                imageUrls.value.push(downloadUrl)
+                await upload(file);
 
+                // Check if the image already exists
+                const existingImageIndex = imageUrls.value.findIndex((url) =>
+                    url.includes(storageRefPath.name)
+                );
+
+                if (existingImageIndex !== -1) {
+                    // If the image already exists, update its URL
+                    imageUrls.value[existingImageIndex] = await getDownloadURL(
+                        storageRefPath
+                    );
+                } else {
+                    // If the image is new, add its URL
+                    const downloadUrl = await getDownloadURL(storageRefPath);
+                    imageUrls.value.push(downloadUrl);
+                }
             } catch (error) {
-                console.error('Error uploading image:', error)
+                console.error('Error uploading image:', error);
                 // You can also show a user-friendly message or handle the error in a different way
             }
         }
-        return Promise.all(uploadPromises)
+
+        return Promise.all(uploadPromises);
     }
+
 
     function uploadImage(e) {
         const files = e.target.files
@@ -52,16 +68,15 @@ export default function useImages() {
         }
     }
 
-
     const images = computed(() => {
-        return imageUrls.value.length > 0 ? imageUrls.value : null
+        return imageUrls.value.length > 0 ? imageUrls.value : "null"
     })
 
     return {
         uploadImage,
         images,
         imageUrls,
-        $reset
-
+        $reset,
+        uploadImages
     }
 }

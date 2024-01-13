@@ -35,6 +35,7 @@ export const usePropertiesStore = defineStore('properties', () => {
 
     return {
         createProperties,
-        propertieId
+        imageUrls
+
     };
 });
