@@ -2,6 +2,9 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { storeToRefs } from 'pinia';
 import { useAuthStore } from '@/stores/auth'
+import { useStoreButtom } from '@/stores/traduction.js';
+
+const storeButtom = useStoreButtom();
 
 // dijimos que no se podia destructurar el store, pero si lo podemos hacer para las partes reactivas(ref, reactive)
 //con storeToRefs podemos hacerlo y asi llamamos unicamente esa reactividad concreta 
@@ -26,10 +29,12 @@ const { isAuth } = storeToRefs(useAuth)
                  <template
               v-slot:prepend>
               <v-btn
-              size="x-large"
-              :to="{name:'home'}">
-                home
+              :to="{name:'home'}"
+              icon="$vuetify"
+              >
               </v-btn>
+                                   <v-btn class="ml-3"
+                                  @click="storeButtom.buttonChange">{{ storeButtom.reactiveFavBotton }}</v-btn>
             </template>
       <template
       v-slot:append>
@@ -47,8 +52,8 @@ const { isAuth } = storeToRefs(useAuth)
       </div>
       <div v-else>
         <v-btn
+        icon="mdi-account"
          :to="{ name: 'login' }">
-                  login
                 </v-btn>
       </div>
     </template>
@@ -59,5 +64,6 @@ const { isAuth } = storeToRefs(useAuth)
       </v-container>
     </v-main>
   </v-layout>
+  
 </template>
 
