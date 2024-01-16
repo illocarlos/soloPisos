@@ -55,7 +55,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <v-card flat>
+    <v-card class="cardDetailsPropertie" flat>
         <v-card-title class="mt-5 text-h3 text-center py-5 font-weight-bold">
             {{ propertie?.title }}
         </v-card-title>
@@ -63,18 +63,18 @@ onMounted(() => {
         <v-row class="my-10">
             
             <v-col cols="12" md="6" >
-                <v-img class="responsiveimg" height="700"  v-if="numPhoto" cover :src="selectedImage" />
-                <v-img class="responsiveimg" height="700"  v-else cover :src="propertie?.photo[0]" />
+                <v-img class="responsiveimg"  v-if="numPhoto" cover :src="selectedImage" />
+                <v-img class="responsiveimg"  v-else cover :src="propertie?.photo[0]" />
                    <!-- Imágenes en miniatura -->
                         <v-row >
          <v-col
          cols="12">
       <v-carousel 
    class="custom-carousel" 
+   height="100"
       cycle 
       hide-delimiter-background
       show-arrows="hover"
-      height="200"
       hide-delimiters
       >
 
@@ -86,7 +86,7 @@ onMounted(() => {
       <v-carousel-item    v-for="(group, groupIndex) in propertieChunks" :key="groupIndex">
         <v-row>
             <v-col v-for="(image, index) in group" :key="index" cols="4">
-              <v-img class="imageCarousel " @click="selectImage(index + groupIndex * 3)" cover height="200" :src="image" />
+              <v-img class="imageCarousel " @click="selectImage(index + groupIndex * 3)" cover  :src="image" />
             </v-col>
         </v-row>
         </v-carousel-item>
@@ -103,8 +103,6 @@ onMounted(() => {
           <v-col cols="12">
             <article class="description-content ">
               {{ propertie?.description }}
-                      {{ propertie?.description }}
-                              {{ propertie?.description }}
             </article>
         </v-col>
         <v-col cols="12" md="4" class="text-center" >
@@ -145,10 +143,8 @@ onMounted(() => {
                     <v-icon end
                       :color="propertie?.yard ? 'success' : 'warning'"
                     :icon="propertie?.yard ? 'mdi-checkbox-marked-circle' : 'mdi-cancel'"/>
-
               </v-col>
         </v-row>
-
        <div  style="height:450px;">
                     <LMap v-model:zoom="zoom" :center="center" :use-global-leaflet="false">
                         <LMarker :lat-lng="center">
@@ -160,16 +156,21 @@ onMounted(() => {
                         <LTileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></LTileLayer>
                     </LMap>
                 </div>
-
-
-
             </v-col>
         </v-row>
     <v-row>
     </v-row>
+  
     </v-card>
+
 </template>
 <style scoped>
+.imageCarousel{
+  height: 7rem;
+}
+.responsiveimg{
+height:30rem
+}
 .result{
 font-size: 1.2rem;
 }
@@ -188,6 +189,24 @@ font-size: 1.2rem;
 }
 .custom-carousel {
     background-color: rgba(0, 0, 0, 0.253);
+}
+@media (min-width: 900px) {
+  .imageCarousel{
+  height: 15rem;
+}
+.responsiveimg{
+height:43rem
+}
+.custom-carousel {
+height: 15rem !important;
+}
+.cardDetailsPropertie{
+  margin-left: 10rem;
+}
+
+}
+.service{
+    color: white
 }
 
 </style>

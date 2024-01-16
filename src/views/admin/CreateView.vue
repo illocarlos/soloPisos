@@ -52,19 +52,17 @@ const yard = useField('yard', null, {
     initialValue:false
 });
 
-watch(() => phone.value.value, (newValue) => {
-    // Utiliza la función de ayuda para formatear el número
-    phone.value.value = formatPhoneNumber(newValue);
+watch(() => phone.value.value, (value) => {
+    // Check if value is a number and convert it to a string
+    const stringValue = typeof value === 'number' ? value.toString() : value;
+    // Utilize the function to format the number
+    phone.value.value = formatPhoneNumber(stringValue).formattedNumber;
 });
 
  function resetFileInput() {
      $reset()
  }
     
-const prueba = () => {
-    console.log(imageUrls)
-}
-
 const submit = handleSubmit((values) => {
    
     useProperties.createProperties(values, imageUrls, center)
@@ -226,12 +224,6 @@ md="3"
         @click="submit">
             add propertie
         </v-btn>
-            <v-btn
-            block
-            color="grey"
-            @click="prueba">
-                prueba
-            </v-btn>
   </v-form>
     </v-card>
 </template>

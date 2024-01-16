@@ -1,4 +1,5 @@
 export const validationSchema = {
+
     title(value) {
         if (value?.length >= 6) return true
         return 'The property title is mandatory or very short'

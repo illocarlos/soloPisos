@@ -1,7 +1,7 @@
 <script setup>
 import useProperties from '@/composables/useProperties';
 import { formatePrice }from'@/helper/format'
-const { propertiesCollection } = useProperties()
+const { propertiesCollection,deleteItem } = useProperties()
 
 </script>
 
@@ -42,6 +42,7 @@ flat>
     edit
 </v-btn>
     <v-btn
+    @click="deleteItem(propertie.id, propertie.photo)"
     color="red-darken-3"
     flat>
         deleted

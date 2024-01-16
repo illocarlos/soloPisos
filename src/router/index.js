@@ -23,6 +23,16 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue')
     },
     {
+      path: '/allProperties',
+      name: 'allProperties',
+      component: () => import('../views/AllProperties.vue')
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import('../views/ContactView.vue')
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: () => import('../views/admin/AdminLayout.vue'),
@@ -37,20 +47,21 @@ const router = createRouter({
       // Cada ruta representa una funcionalidad específica dentro del panel de administración.
       children: [
         {
-          path: '/admin/properties',
+          path: 'properties',
           name: 'admin-properties',
           component: () => import('../views/admin/AdminView.vue'),
         },
         {
-          path: '/admin/create',
+          path: 'create',
           name: 'admin-create',
           component: () => import('../views/admin/CreateView.vue'),
         },
         {
-          path: '/admin/edit/:id',
+          path: 'edit/:id',
           name: 'admin-edit',
           component: () => import('../views/admin/EditView.vue'),
         },
+
       ]
     }
   ]

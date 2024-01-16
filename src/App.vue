@@ -3,6 +3,13 @@ import { RouterLink, RouterView } from 'vue-router'
 import { storeToRefs } from 'pinia';
 import { useAuthStore } from '@/stores/auth'
 import { useStoreButtom } from '@/stores/traduction.js';
+import Foother from '@/components/Foother.vue';
+import Alert from '@/components/Alert.vue';
+
+
+
+
+import { onMounted, ref } from 'vue';
 
 const storeButtom = useStoreButtom();
 
@@ -13,6 +20,24 @@ const { isAuth } = storeToRefs(useAuth)
 
 //personalmente no me gusta podemos destructurar funciones de esta manera 
 //const { login } = useAuth
+
+const isNavbarHidden = ref(true);
+
+const scrollToTop = () => {
+  // Scroll to the top of the page
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+const isNavbarTransparent = ref(false);
+
+const handleScroll = () => {
+  isNavbarTransparent.value = window.scrollY > 50;
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+
 </script>
 
 <template>
@@ -22,19 +47,20 @@ const { isAuth } = storeToRefs(useAuth)
   <!-- usamos este componente v-layout dentro v-app-bar como navbar y usamos v-btn como enlaces  todo esgto tiene un diseño predeterminado -->
     <v-layout >
       <v-app-bar
+      class="navbar"
             elevation="3"
-              class="mx-auto"
-      color="brown-darken-4">
+             :color="isNavbarTransparent ? 'transparent' : 'brown-darken-4'">
       <!-- v-slot'prepend' coloca en el contenedor el boton a la izquierda u append a la derecha  -->
                  <template
               v-slot:prepend>
               <v-btn
+              @click="scrollToTop"
               :to="{name:'home'}"
               icon="$vuetify"
               >
               </v-btn>
-                                   <v-btn class="ml-3"
-                                  @click="storeButtom.buttonChange">{{ storeButtom.reactiveFavBotton }}</v-btn>
+              <v-btn class="ml-3"
+              @click="storeButtom.buttonChange">{{ storeButtom.reactiveFavBotton }}</v-btn>
             </template>
       <template
       v-slot:append>
@@ -47,23 +73,30 @@ const { isAuth } = storeToRefs(useAuth)
                   </v-btn>
                    <v-btn
                    @click="useAuth.logOut">
-                    log out
+                  {{ storeButtom.buttonLeng ? 'Cerrar sesion' : 'log out' }}
                     </v-btn>
       </div>
       <div v-else>
         <v-btn
         icon="mdi-account"
-         :to="{ name: 'login' }">
-                </v-btn>
-      </div>
-    </template>
-    </v-app-bar>
-    <v-main>
-      <v-container>
-        <RouterView />
-      </v-container>
-    </v-main>
-  </v-layout>
-  
+        :to="{ name: 'login' }">
+      </v-btn>
+    </div>
+  </template>
+  <v-container>
+  </v-container>
+</v-app-bar>
+<v-main>
+    <Alert/>
+  <RouterView />
+  <Foother/>
+</v-main>
+</v-layout>
 </template>
+<style>
+.navbar {
+  transition: background-color 0.3s ease-in-out;
+}
+</style>
+
 
