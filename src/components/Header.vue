@@ -140,7 +140,7 @@ margin-bottom:2rem ;
     background: linear-gradient(90deg, #d38845 24.75%, rgba(87, 153, 247, 0.00) 100%);
 }
 
-.element-bottom .about-us:hover {
+.element-bottom .about-us:before {
     height: 8rem;/*-----*/
 }
 
@@ -155,7 +155,7 @@ margin-bottom:2rem ;
     background: linear-gradient(90deg, #686868 24.38%, rgba(8, 255, 184, 0.00) 100%);
 }
 
-.element-bottom .services:hover {
+.element-bottom .services:before {
    height: 8rem;/*-----*/
 }
 
