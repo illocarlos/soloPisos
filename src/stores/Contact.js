@@ -2,18 +2,29 @@ import { defineStore } from 'pinia';
 import { addDoc, collection } from 'firebase/firestore'; // Asegúrate de importar los métodos correctos de Firebase Firestore
 import { useFirestore } from 'vuefire'; // Si usas vuefire para Firebase
 import { useRouter } from 'vue-router'; // Importa el enrutador si estás usando Vue Router
-
+import { useStoreAlert } from '@/stores/alert'
+import { useStoreButtom } from '@/stores/traduction.js'
 export const useContactStore = defineStore('Contact', () => {
-
+    const alert = useStoreAlert()
     const db = useFirestore(); // Inicializa Firestore usando vuefire
     const router = useRouter(); // Inicializa el enrutador si estás usando Vue Router
+    const storeButtom = useStoreButtom()
 
 
 
     async function createContact(values) {
 
         const { ...contact } = values;
-        console.log(contact)
+
+        alert.show = true
+        storeButtom.buttonLeng ?
+            alert.text = 'was sent correctly'
+            : alert.text = 'se envio correctamente'
+
+
+        setTimeout(() => {
+            alert.$reset()
+        }, 3000)
         try {
             // mandamos a firebase el objeto creado del formulario
             const docRef = await addDoc(collection(db, 'contact'), contact);
@@ -23,6 +34,9 @@ export const useContactStore = defineStore('Contact', () => {
             }
         } catch (error) {
             console.error('Error creating property:', error);
+            alert.show = true
+            alert.text = 'wasn,t sent '
+
             // Trata el error de acuerdo a tu lógica de manejo de errores
         }
     }

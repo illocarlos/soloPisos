@@ -21,8 +21,7 @@ const email = useField('email')
 const phone = useField('phone')
 
 const submit = handleSubmit((values) => {
-  if (Object.values(values).includes("")) {
-console.log(values)
+  if (Object.values(values.name).includes("")) {
     alert.text = "fill in all the fields"
     alert.show = true
     alert.error = true
@@ -41,7 +40,8 @@ console.log(values)
   
         flat
         >
-    <v-form >
+    <v-form 
+    @submit.prevent="submit">
     <v-text-field
     class="mb-5"
    :label="storeButtom.buttonLeng ? 'Nombre' : 'Name'" 
@@ -67,9 +67,11 @@ console.log(values)
                     v-model="description.value.value"
                     :error-messages="description.errorMessage.value">
                 </v-textarea>
+           
                 <v-btn 
+                 variant="elevated"
           color="brown-darken-4" 
-                   @click="submit"
+                    type="submit"
                 block>
                 {{  storeButtom.buttonLeng ? 'Enviar' : 'Send'}}
                 </v-btn>
@@ -83,8 +85,8 @@ console.log(values)
   background-size: cover;
   background-position: center;
   z-index: -10;
-  height: 80vh; /* Cambiado de 100dvh a 100vh */
-  width: 100vw; /* Agregado para extender el fondo en el eje x */
+  height: 100vh; /* Cambiado de 100dvh a 100vh */
+  width: 90vw; /* Agregado para extender el fondo en el eje x */
   overflow: hidden; /* Para ocultar el desbordamiento del fondo */
 }
 

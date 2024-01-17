@@ -1,4 +1,4 @@
-import { ref, watch, watchEffect } from "vue"
+import { ref, watchEffect } from "vue"
 import { defineStore } from "pinia"
 
 export const useStoreAlert = defineStore('alert', () => {
@@ -13,7 +13,8 @@ export const useStoreAlert = defineStore('alert', () => {
     }
 
 
-    watch(show, () => {
+
+    watchEffect(() => {
         if (show.value) {
             setTimeout(() => {
                 text.value = ''
@@ -22,6 +23,7 @@ export const useStoreAlert = defineStore('alert', () => {
             }, 3000)
         }
     })
+
 
 
 

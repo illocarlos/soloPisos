@@ -58,11 +58,11 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
 h1 {
    position: absolute;
    top: 8rem;
-    font-size: 4rem;
+    font-size: 3rem;
     color: #563003;
 }
 .total {
-  background-image: url('../assets/fond.jpeg');
+  background-image: url('../assets/fondo.jpeg');
   background-size: cover;
   background-position: center;
   z-index: -10;
@@ -84,7 +84,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     height: 78px;/*-----*/
-    width: 400px;/*-----*/
+    width: 340px;/*-----*/
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);

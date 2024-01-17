@@ -1,10 +1,11 @@
 <script setup>
+import Alert from '@/components/Alert.vue';
+
 import { RouterLink, RouterView } from 'vue-router'
 import { storeToRefs } from 'pinia';
 import { useAuthStore } from '@/stores/auth'
 import { useStoreButtom } from '@/stores/traduction.js';
 import Foother from '@/components/Foother.vue';
-import Alert from '@/components/Alert.vue';
 
 
 
@@ -49,11 +50,12 @@ onMounted(() => {
       <v-app-bar
       class="navbar"
             elevation="3"
-             :color="isNavbarTransparent ? 'transparent' : 'brown-darken-4'">
+             :color="isNavbarTransparent ? 'brown-darken-4' : 'transparent'">
       <!-- v-slot'prepend' coloca en el contenedor el boton a la izquierda u append a la derecha  -->
                  <template
               v-slot:prepend>
               <v-btn
+              class="ml-3"
               @click="scrollToTop"
               :to="{name:'home'}"
               icon="$vuetify"
@@ -66,6 +68,7 @@ onMounted(() => {
       v-slot:append>
       <!-- generamos una condicion si esta logeado que aparezca unos botones y si no otro esto son rutas que te mandan a otro view -->
       <div
+      class="mr-5"
         v-if="isAuth">
     <v-btn
            :to="{ name: 'admin-properties' }">
@@ -77,19 +80,21 @@ onMounted(() => {
                     </v-btn>
       </div>
       <div v-else>
-        <v-btn
+        <v-btn class="mr-5"
         icon="mdi-account"
         :to="{ name: 'login' }">
       </v-btn>
     </div>
   </template>
+  
   <v-container>
   </v-container>
 </v-app-bar>
 <v-main>
-    <Alert/>
-  <RouterView />
-  <Foother/>
+   <Alert/>
+
+   <RouterView />
+   <Foother/>
 </v-main>
 </v-layout>
 </template>

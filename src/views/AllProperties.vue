@@ -24,25 +24,58 @@ const submit = () => {
 
 <template>
 
-       <v-card flat class="py-10">
-          <v-form>
+
+
+       <v-card flat class="heigthView py-10">
+          <v-form class="formFixed">
           <v-row>
-    <v-col cols="6" md="1">
+    <v-col class="heigth" cols="12" md="6">
        <v-checkbox :label="storeButtom.buttonLeng ? 'piscina' : 'pool' "  v-model=" pool "></v-checkbox>
     </v-col>
-    <v-col cols="6" md="1">
+    <v-col cols="12" md="6">
 
        <v-checkbox :label="storeButtom.buttonLeng ? 'patio' : 'yard'" v-model="yard"></v-checkbox>
     </v-col>
-    </v-row>
-    <v-btn
-     @click="submit">
+    <v-col class="heigthbtn"   cols="12"
+    md="12">
+       <v-btn
+      class="heigthbtn" 
+       color="brown-darken-3"
+       block
+       @click="submit">
        search
-    </v-btn>
+      </v-btn>
+   </v-col>
+    </v-row>
           </v-form>
 
-          <v-row>
+          <v-row >
              <Propertie v-for="prop in filterproperties" :key="prop.id" :prop="prop" />
           </v-row>
        </v-card>
+    
 </template>
+
+<style>
+.heigthbtn{
+   height: 0.1rem;
+}
+.heigth{
+   height: 2rem;
+}
+
+.formFixed{
+   border-radius:0.5rem ;
+   width: 8rem;
+   background-color:rgba(255, 255, 255, 0.73) ;
+position: fixed;
+right: 5%;
+z-index: 10;
+}
+@media (min-width: 900px) {
+
+.formFixed{
+   width: 13rem;
+} 
+}
+</style>

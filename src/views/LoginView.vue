@@ -4,9 +4,10 @@ import {useForm,useField} from 'vee-validate'
 // usamos un validator es como un helper y para usarlo como buena practica lo llamamos de la misma forma en la que debemos llamar
 //en el useForm ya que se nombrade la misma forma
 import { loginSchema as validationSchema } from '@/validation/loginSchema'
+import { useStoreButtom } from '@/stores/traduction.js'
 
 import{ useAuthStore }from'@/stores/auth'
-
+const storeButtom = useStoreButtom()
 //aqui lo mandamos del submit al validacion que creamos y esta directamente asociada al formulario con la misma palabra reservada 
 //esto es lo mismo como useForm({validationSchema:loginSchema })
 const { handleSubmit } = useForm({ validationSchema })
@@ -27,11 +28,12 @@ const submit = handleSubmit((value) => {
  -->
   <v-card
   max-width="600"
-  class="mx-auto mt-10">
+  flat
+  class="mx-auto totalHeigth">
     <v-card-title
-     class="text-h2 text-center font-weight-bold"
-     tag="h2">
-  iniciar sesion
+     class="text-h4 text-center font-weight-bold"
+     tag="h4">
+      {{ storeButtom.buttonLeng ? 'Iniciar sesion' : 'Log In' }}
     </v-card-title>
       <v-alert
       v-if="useAuth.hasError"
@@ -54,7 +56,7 @@ const submit = handleSubmit((value) => {
         class="mt-5"
         type="password"
         v-model="password.value.value"
-        label="Contraseña"
+        :label=" storeButtom.buttonLeng ? 'Contraseña' : 'Password'  "
         :error-messages="password.errorMessage.value"
         bg-color="brown-lighten-4"/>
      <v-btn
@@ -63,8 +65,15 @@ const submit = handleSubmit((value) => {
     color="blue-grey-lighten-3"
     @click="submit"
      >
-      inicio
+       {{ storeButtom.buttonLeng ? 'Inicio' : 'Log in'  }}
      </v-btn>
     </v-form>
   </v-card>
 </template>
+<style scoped>
+.totalHeigth{
+  margin-top:10rem ;
+  height: 100vh;
+}
+
+</style>
