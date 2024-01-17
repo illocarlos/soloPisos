@@ -125,16 +125,16 @@ margin-bottom:2rem ;
     background: linear-gradient(-90deg, #563003 27.6%, rgba(56, 54, 154, 0.00) 100%);
 }
 
-.element-bottom .projects:active {
+.element-bottom .projects:hover {
     height: 8rem;/*-----*/
 }
 
-.element-bottom .projects:active p {
+.element-bottom .projects:hover p {
     opacity: 1;
     transition: opacity 0.6s;
 }
 
-.element-bottom .projects:active {
+.element-bottom .projects:hover {
     mix-blend-mode: plus-lighter;
 }
 
@@ -146,12 +146,12 @@ margin-bottom:2rem ;
     height: 8rem;/*-----*/
 }
 
-.element-bottom .about-us:active p {
+.element-bottom .about-us:hover p {
     opacity: 1;
     transition: opacity 0.6s;
 }
 
-.element-bottom .about-us:active {
+.element-bottom .about-us:hover {
     mix-blend-mode: plus-lighter;
 }
 
@@ -160,16 +160,16 @@ margin-bottom:2rem ;
     background: linear-gradient(-90deg, #686868 34.38%, rgba(8, 255, 184, 0.00) 100%);
 }
 
-.element-bottom .services:active {
+.element-bottom .services:hover {
    height: 8rem;/*-----*/
 }
 
-.element-bottom .services:active p {
+.element-bottom .services:hover p {
     opacity: 1;
     transition: opacity 0.6s;
 }
 
-.element-bottom .services:active {
+.element-bottom .services:hover {
     mix-blend-mode: plus-lighter;
 }
 
