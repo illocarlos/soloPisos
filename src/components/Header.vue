@@ -44,7 +44,7 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
         <div class="dropdown about-us font-weight-bold" >
             <p class="text-center"  color="black">{{ storeButtom.buttonLeng ? 'ofrecemos una amplio catalogo de viviendas ' : 'Our people and our objectives' }}
                 <br>
-            <v-link class="btnContect font-weight-bold" @click="goHome">
+            <v-link class="btnContactBlack font-weight-bold" @click="goHome">
              {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-link>
             </p>
           <h3>{{ storeButtom.buttonLeng ? 'Viviendas' : 'Homes' }}</h3>
@@ -80,7 +80,7 @@ h1 {
 .element-bottom {
     position: absolute;
     right: 0;
-    bottom: 6rem;/*-----*/
+    bottom: 3rem;/*-----*/
     margin-bottom: 41px;/*-----*/
     font-family: 'CabinetGrotesk-Bold', sans-serif;
 }
@@ -89,7 +89,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 78px;/*-----*/
+    height: 58px;/*-----*/
     width: 240px;/*-----*/
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
@@ -173,7 +173,57 @@ margin-bottom:2rem ;
 color: black;
     text-transform:uppercase;
 }
-@media (min-width: 900px) {
+
+
+
+@media (min-width: 900px) and (max-width: 1400px) {
+    .btnContectBlack {
+        font-size:1.2rem !important ;
+    }
+
+    .btnContect {
+        font-size:1.2rem !important ;
+    }
+
+ h1 {
+   
+   position: absolute;
+   left: 5rem;
+   top: 10rem;
+    font-size: 5rem;
+    color: #563003;
+}
+.element-bottom {
+ 
+    bottom: 4rem;/*-----*/
+  
+}
+.element-bottom .dropdown {
+    height: 78px;/*-----*/
+    width: 478px;/*-----*/
+}
+.element-bottom .dropdown p {
+      padding-left: 5rem;
+       margin-left: 1rem;/*-----*/
+    font-size: 1rem;/*-----*/
+}
+.element-bottom .dropdown h3 {
+    padding-left: 50px;
+    font-size: 2.5rem;/*-----*/
+}
+
+.element-bottom .service:hover {
+    height: 10rem;/*-----*/
+}
+
+.element-bottom .about-us:hover {
+    height: 10rem;/*-----*/
+}
+
+}
+
+
+@media (min-width: 1400px) and (max-width: 1700px)  {
 
     .btnContectBlack {
         font-size:1.2rem !important ;
@@ -191,16 +241,13 @@ color: black;
     font-size: 5rem;
     color: #563003;
 }
-
-
-
 .element-bottom {
  
-    bottom: 2rem;/*-----*/
+    bottom: 13rem;/*-----*/
     margin-bottom: 41px;/*-----*/
 }
 .element-bottom .dropdown {
-    height: 88px;/*-----*/
+    height: 78px;/*-----*/
     width: 478px;/*-----*/
 }
 .element-bottom .dropdown p {
