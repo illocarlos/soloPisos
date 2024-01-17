@@ -122,7 +122,7 @@ margin-bottom:2rem ;
  
 }
 .element-bottom.dropdown h3:hover{
-    height: 8rem;
+    height: 8rem !important;
 }
 
 .element-bottom .service {
