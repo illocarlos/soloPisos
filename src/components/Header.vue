@@ -87,7 +87,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     height: 78px;/*-----*/
-    width: 340px;/*-----*/
+    width: 240px;/*-----*/
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
