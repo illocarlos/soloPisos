@@ -121,7 +121,7 @@ margin-bottom:2rem ;
 
 
 .element-bottom .projects {
-      color: white;
+     color: black;
     background: linear-gradient(-90deg, #563003 27.6%, rgba(56, 54, 154, 0.00) 100%);
 }
 
@@ -156,7 +156,7 @@ margin-bottom:2rem ;
 }
 
 .element-bottom .services {
-    color: white;
+    color: black;
     background: linear-gradient(-90deg, #686868 34.38%, rgba(8, 255, 184, 0.00) 100%);
 }
 
@@ -221,7 +221,7 @@ margin-bottom:2rem ;
 
 }
 .service{
-    color: white
+    color: black;
 }
 
 </style>
