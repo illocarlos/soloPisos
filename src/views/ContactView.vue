@@ -86,7 +86,7 @@ const submit = handleSubmit((values) => {
   background-position: center;
   z-index: -10;
   height: 100vh; /* Cambiado de 100dvh a 100vh */
-  width: 90vw; /* Agregado para extender el fondo en el eje x */
+  width: 100vw; /* Agregado para extender el fondo en el eje x */
   overflow: hidden; /* Para ocultar el desbordamiento del fondo */
 }
 

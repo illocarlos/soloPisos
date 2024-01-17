@@ -22,10 +22,10 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
 
     
       <div class="element-bottom ">
-        <div class="dropdown projects  font-weight-bold" >
+        <div class="dropdown service  font-weight-bold" >
      <p class="text-center" >{{ storeButtom.buttonLeng ? 'disponemos de servicios para ayudarte a elegir' : 'we have services to help you choose' }} 
            <br>
-           <v-btn size="x-small" class="font-weight-bold" flat color="transparent"
+           <v-btn size="x-small" class="font-weight-bold btnContect" flat color="transparent"
                       @click="scrollToTop(800, false) ">
                       {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-btn>
         </p>
@@ -36,18 +36,18 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
         <div class="dropdown about-us font-weight-bold" >
             <p class="text-center"  color="black">{{ storeButtom.buttonLeng ? 'ofrecemos una amplio catalogo de viviendas ' : 'Our people and our objectives' }}
                 <br>
-            <v-btn size="x-small" class="font-weight-bold" flat color="transparent"
+            <v-btn size="x-small" class="btnContect font-weight-bold" flat color="transparent"
             :to="{ name: 'allProperties' }">
              {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-btn>
             </p>
           <h3>{{ storeButtom.buttonLeng ? 'Viviendas' : 'Homes' }}</h3>
         </div>
-        <div class="dropdown services font-weight-bold">
+        <div class="dropdown contact font-weight-bold">
             <p class="text-center" >{{ storeButtom.buttonLeng ?'Puedes ponerte en contacto con nosotros ':'You can contact us'  }} 
                 <br>
                 <v-btn
                 size="x-small"
-            class="font-weight-bold"
+            class="font-weight-bold btnContect"
                 flat
                 color="transparent"
                  :to="{name:'contact'}"> {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-btn></p>
@@ -110,7 +110,6 @@ margin-bottom:2rem ;
 }
 
 .element-bottom .dropdown p {
-     
     text-align: center;
     font-size: 0.6rem;
     margin-left: 1rem;/*-----*/
@@ -121,17 +120,17 @@ margin-bottom:2rem ;
 }
 
 
-.element-bottom .projects {
+.element-bottom .service {
       color: white;
     background: linear-gradient(90deg, #563003 24.6%, rgba(56, 54, 154, 0.00) 100%);
 }
 
-.element-bottom .projects:before {
+.element-bottom .service:before {
     width: 20rem;
     height: 8rem;/*-----*/
 }
 
-.element-bottom .projects:hover p {
+.element-bottom .service:hover p {
     opacity: 1;
     transition: opacity 0.6s;
 }
@@ -150,21 +149,25 @@ margin-bottom:2rem ;
 }
 
 
-.element-bottom .services {
+.element-bottom .contact {
     color: white;
     background: linear-gradient(90deg, #686868 24.38%, rgba(8, 255, 184, 0.00) 100%);
 }
 
-.element-bottom .services:before {
+.element-bottom .contact:before {
    height: 8rem;/*-----*/
 }
 
-.element-bottom .services:hover p {
+.element-bottom .contact:hover p {
     opacity: 1;
     transition: opacity 0.6s;
 }
 
 @media (min-width: 1500px) {
+
+    .btnContect {
+        font-size:1.5rem !important ;
+    }
 
  h1 {
    
@@ -196,7 +199,7 @@ margin-bottom:2rem ;
     font-size: 2.5rem;/*-----*/
 }
 
-.element-bottom .projects:hover {
+.element-bottom .service:hover {
     height: 10rem;/*-----*/
 }
 
@@ -204,12 +207,12 @@ margin-bottom:2rem ;
     height: 10rem;/*-----*/
 }
 
-.element-bottom .services:hover {
+.element-bottom .contact:hover {
    height: 10rem;/*-----*/
 }
 
 }
-.service{
+.contact{
     color: white
 }
 

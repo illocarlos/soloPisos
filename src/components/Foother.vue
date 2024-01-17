@@ -34,18 +34,16 @@ export default {
    
 
 
-<div class=" footer2">
+<div class="fotherPosition" >
 
-  <div class="d-flex w-100 px-4">
-    <strong class="mt-4">{{ storeButtom.buttonLeng?'Todos los derechos reservados':'All rights reserved'  }} </strong>
+  <div class=" d-flex w-100 ">
     
-    <v-spacer></v-spacer>
     
-    <v-btn  color="white" v-for="icon in icons" :key="icon"  :icon="icon" variant="plain" size="large"
+    <v-btn  color="white" v-for="icon in icons" :key="icon"  :icon="icon" variant="plain" size="x-large"
     @click="openSocialMediaLink(icon)"></v-btn>
   </div>
   
-  <div  class="px-4 text-center w-100">
+  <div  class="text-center w-100">
     {{ new Date().getFullYear() }} — <strong ><span><v-icon icon="$vuetify"></v-icon></span>ueImnova</strong>
   </div>
 </div>
@@ -59,14 +57,16 @@ export default {
   color: white;
 }
 .footerP{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.footerP{
 
   position: absolute;
   bottom: 100;
 margin-top:6rem ;
  background-color:rgba(0, 0, 0, 0.788) ;
-}
-.footer2{
-
-  width: 100vw;
 }
 </style>

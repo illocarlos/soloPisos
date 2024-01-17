@@ -46,9 +46,9 @@ onMounted(() => {
  tiene clase predeterminadas al estilo de taiwind  profundizando mas en el framework de vue 
   LO DEBEMOS LLAMAR EN MAIN DE LA MANERA QUE  LO COLOCAMOS!! -->
   <!-- usamos este componente v-layout dentro v-app-bar como navbar y usamos v-btn como enlaces  todo esgto tiene un diseño predeterminado -->
-    <v-layout >
-      <v-app-bar
-      class="navbar"
+  <v-layout class="layout">
+  <v-app-bar
+  class="navbar layout"
             elevation="3"
              :color="isNavbarTransparent ? 'brown-darken-4' : 'transparent'">
       <!-- v-slot'prepend' coloca en el contenedor el boton a la izquierda u append a la derecha  -->
@@ -64,20 +64,22 @@ onMounted(() => {
               <v-btn class="ml-3"
               @click="storeButtom.buttonChange">{{ storeButtom.reactiveFavBotton }}</v-btn>
             </template>
+
       <template
       v-slot:append>
       <!-- generamos una condicion si esta logeado que aparezca unos botones y si no otro esto son rutas que te mandan a otro view -->
       <div
-      class="mr-5"
+      class="mr-5 barAppend"
         v-if="isAuth">
-    <v-btn
-           :to="{ name: 'admin-properties' }">
-                  admin
-                  </v-btn>
-                   <v-btn
-                   @click="useAuth.logOut">
-                  {{ storeButtom.buttonLeng ? 'Cerrar sesion' : 'log out' }}
-                    </v-btn>
+  <v-btn
+  :to="{ name: 'admin-properties' }">
+  admin
+</v-btn>
+  <v-btn
+  @click="useAuth.logOut">
+  {{ storeButtom.buttonLeng ? 'Cerrar sesion' : 'log out' }}
+</v-btn>
+
       </div>
       <div v-else>
         <v-btn class="mr-5"
@@ -94,13 +96,21 @@ onMounted(() => {
    <Alert/>
 
    <RouterView />
-   <Foother/>
-</v-main>
-</v-layout>
+   <Foother class="foother"/>
+  </v-main>
+  </v-layout>
 </template>
 <style>
+.barAppend{
+  display: flex;
+  flex-flow: row nowrap;
+}
 .navbar {
+  width: 100vw !important;
   transition: background-color 0.3s ease-in-out;
+}
+.foother{
+    width: 100vw;
 }
 </style>
 

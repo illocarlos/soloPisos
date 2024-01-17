@@ -42,7 +42,7 @@ const storeButtom = useStoreButtom()
    {{ storeButtom.buttonLeng ? ' Únete a nuestro equipo: Transforma tu carrera con oportunidades emocionantes y un ambiente de trabajo excepcional. ¡Juntos alcanzaremos el éxito! ' 
    : 'Join our team: Transform your career with exciting opportunities and a work environment exceptional. Together we will achieve success!' }} 
         </v-card-text>
-        <v-btn :to="{ name: 'contact' }"   class="font-weight-bold"  block>
+        <v-btn  :to="{ name: 'contact' }"   class="font-weight-bold"  block>
           {{ storeButtom.buttonLeng ? ' Saber mas ' : 'know more ' }} </v-btn>
       </v-card>
     </v-col>
