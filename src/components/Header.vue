@@ -190,7 +190,7 @@ margin-bottom:2rem ;
 }
 .element-bottom .dropdown {
     height: 128px;/*-----*/
-    width: 778px;/*-----*/
+    width: 578px;/*-----*/
 }
 .element-bottom .dropdown p {
       padding-left: 5rem;
