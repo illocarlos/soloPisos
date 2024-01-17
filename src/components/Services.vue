@@ -72,7 +72,7 @@ img {
 @media (min-width: 900px) {
   .sizeText{
   color: grey;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
   .titleText{

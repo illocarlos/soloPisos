@@ -166,7 +166,7 @@ margin-bottom:2rem ;
     transition: opacity 0.6s;
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 900px) {
 
     .btnContect {
         font-size:1.5rem !important ;
