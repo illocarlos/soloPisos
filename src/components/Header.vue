@@ -175,14 +175,14 @@ margin-bottom:2rem ;
 
 
 
-@media (min-width: 900px) {
+@media (min-width: 1500px) {
 
  h1 {
    
    position: absolute;
    left: 16rem;
    top: 20rem;
-    font-size: 8rem;
+    font-size: 5rem;
     color: #563003;
 }
 
@@ -194,8 +194,8 @@ margin-bottom:2rem ;
     margin-bottom: 41px;/*-----*/
 }
 .element-bottom .dropdown {
-    height: 148px;/*-----*/
-    width: 778px;/*-----*/
+    height: 128px;/*-----*/
+    width: 678px;/*-----*/
 }
 .element-bottom .dropdown p {
       padding-left: 5rem;
