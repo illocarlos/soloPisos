@@ -1,8 +1,17 @@
 <script setup>
 import { useStoreButtom } from '@/stores/traduction.js'
+import { useRouter } from 'vue-router';
 const storeButtom = useStoreButtom()
+const router = useRouter();
 
 
+const goHome = () => {
+    router.push({ name: 'allProperties' });
+}
+const goContact = () => {
+    router.push({ name: 'contact' })
+    
+}
 
 const scrollToTop = (scrollPosition, scrollUp = true) => {
     // Calcular la posición final del desplazamiento
@@ -25,9 +34,8 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
         <div class="dropdown service  font-weight-bold" >
      <p class="text-center" >{{ storeButtom.buttonLeng ? 'disponemos de servicios para ayudarte a elegir' : 'we have services to help you choose' }} 
            <br>
-           <v-btn size="x-small" class="font-weight-bold btnContect" flat color="transparent"
-                      @click="scrollToTop(800, false) ">
-                      {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-btn>
+           <v-Link class="font-weight-bold btnContect"  @click="scrollToTop(800, false) ">
+                      {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-link>
         </p>
           <h3> {{ storeButtom.buttonLeng ? 'Servicios' : 'Services' }} </h3>
         </div>
@@ -36,21 +44,16 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
         <div class="dropdown about-us font-weight-bold" >
             <p class="text-center"  color="black">{{ storeButtom.buttonLeng ? 'ofrecemos una amplio catalogo de viviendas ' : 'Our people and our objectives' }}
                 <br>
-            <v-btn size="x-small" class="btnContect font-weight-bold" flat color="transparent"
-            :to="{ name: 'allProperties' }">
-             {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-btn>
+            <v-link class="btnContect font-weight-bold" @click="goHome">
+             {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-link>
             </p>
           <h3>{{ storeButtom.buttonLeng ? 'Viviendas' : 'Homes' }}</h3>
         </div>
         <div class="dropdown contact font-weight-bold">
             <p class="text-center" >{{ storeButtom.buttonLeng ?'Puedes ponerte en contacto con nosotros ':'You can contact us'  }} 
                 <br>
-                <v-btn
-                size="x-small"
-            class="font-weight-bold btnContect"
-                flat
-                color="transparent"
-                 :to="{name:'contact'}"> {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-btn></p>
+                <v-link class="font-weight-bold btnContect" @click="goContact"
+                 :to="{name:'contact'}"> {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-link></p>
           <h3>{{ storeButtom.buttonLeng ? 'Contactanos' : 'Contact' }}</h3>
         </div>
       </div>
@@ -125,8 +128,8 @@ margin-bottom:2rem ;
     background: linear-gradient(90deg, #563003 24.6%, rgba(56, 54, 154, 0.00) 100%);
 }
 
-.element-bottom .service:before {
-    width: 20rem;
+.element-bottom .service:hover {
+   
     height: 8rem;/*-----*/
 }
 
@@ -139,7 +142,7 @@ margin-bottom:2rem ;
     background: linear-gradient(90deg, #d38845 24.75%, rgba(87, 153, 247, 0.00) 100%);
 }
 
-.element-bottom .about-us:before {
+.element-bottom .about-us:hover {
     height: 8rem;/*-----*/
 }
 
@@ -154,7 +157,7 @@ margin-bottom:2rem ;
     background: linear-gradient(90deg, #686868 24.38%, rgba(8, 255, 184, 0.00) 100%);
 }
 
-.element-bottom .contact:before {
+.element-bottom .contact:hover {
    height: 8rem;/*-----*/
 }
 
