@@ -121,7 +121,9 @@ margin-bottom:2rem ;
     opacity: 0;
  
 }
-
+.element-bottom.dropdown h3:hover{
+    height: 8rem;
+}
 
 .element-bottom .service {
       color: white;
