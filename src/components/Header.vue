@@ -196,11 +196,11 @@ color: black;
 
 .element-bottom {
  
-    bottom: 7rem;/*-----*/
+    bottom: 2rem;/*-----*/
     margin-bottom: 41px;/*-----*/
 }
 .element-bottom .dropdown {
-    height: 108px;/*-----*/
+    height: 88px;/*-----*/
     width: 478px;/*-----*/
 }
 .element-bottom .dropdown p {
