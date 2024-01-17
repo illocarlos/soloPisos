@@ -44,7 +44,7 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
         <div class="dropdown about-us font-weight-bold" >
             <p class="text-center"  color="black">{{ storeButtom.buttonLeng ? 'ofrecemos una amplio catalogo de viviendas ' : 'Our people and our objectives' }}
                 <br>
-            <v-link class="btnContactBlack font-weight-bold" @click="goHome">
+            <v-link class="btnContect font-weight-bold" @click="goHome">
              {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-link>
             </p>
           <h3>{{ storeButtom.buttonLeng ? 'Viviendas' : 'Homes' }}</h3>
@@ -80,7 +80,7 @@ h1 {
 .element-bottom {
     position: absolute;
     right: 0;
-    bottom: 4rem;/*-----*/
+    bottom: 6rem;/*-----*/
     margin-bottom: 41px;/*-----*/
     font-family: 'CabinetGrotesk-Bold', sans-serif;
 }
@@ -175,7 +175,7 @@ color: black;
 }
 @media (min-width: 900px) {
 
-    .btnContactBlack {
+    .btnContectBlack {
         font-size:1.2rem !important ;
     }
 
@@ -196,7 +196,7 @@ color: black;
 
 .element-bottom {
  
-    bottom: 5rem;/*-----*/
+    bottom: 7rem;/*-----*/
     margin-bottom: 41px;/*-----*/
 }
 .element-bottom .dropdown {

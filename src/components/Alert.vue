@@ -30,6 +30,7 @@ setTimeout(() => {
   top: 10%;
  padding: 3rem;
   background-color:rgba(240, 240, 240, 0.679) ;
+  z-index: 100;
 
 }
 
