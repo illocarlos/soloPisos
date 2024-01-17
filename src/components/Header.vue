@@ -22,13 +22,13 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
 
     
       <div class="element-bottom ">
-        <div class="dropdown projects font-weight-bold" >
+        <div class="dropdown projects  font-weight-bold" >
      <p class="text-center" >{{ storeButtom.buttonLeng ? 'disponemos de servicios para ayudarte a elegir' : 'we have services to help you choose' }} 
            <br>
-      <v-btn  class="font-weight-bold" flat color="transparent"
-                 @click="scrollToTop(800, false) ">
-                 {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-btn>
-                </p>
+           <v-btn size="x-small" class="font-weight-bold" flat color="transparent"
+                      @click="scrollToTop(800, false) ">
+                      {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-btn>
+        </p>
           <h3> {{ storeButtom.buttonLeng ? 'Servicios' : 'Services' }} </h3>
         </div>
 
@@ -36,7 +36,7 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
         <div class="dropdown about-us font-weight-bold" >
             <p class="text-center"  color="black">{{ storeButtom.buttonLeng ? 'ofrecemos una amplio catalogo de viviendas ' : 'Our people and our objectives' }}
                 <br>
-            <v-btn  class="font-weight-bold" flat color="transparent"
+            <v-btn size="x-small" class="font-weight-bold" flat color="transparent"
             :to="{ name: 'allProperties' }">
              {{ storeButtom.buttonLeng ? 'Click aqui ' : 'Click here ' }}</v-btn>
             </p>
@@ -46,6 +46,7 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
             <p class="text-center" >{{ storeButtom.buttonLeng ?'Puedes ponerte en contacto con nosotros ':'You can contact us'  }} 
                 <br>
                 <v-btn
+                size="x-small"
             class="font-weight-bold"
                 flat
                 color="transparent"
@@ -100,9 +101,6 @@ h1 {
     color: #F8F7F3;
 }
 
-.element-bottom .dropdown .link-services {
-    color: rgba(45, 44, 42, 1);
-}
 
 .element-bottom .dropdown h3 {
     margin-right:2rem ;
@@ -112,6 +110,7 @@ margin-bottom:2rem ;
 }
 
 .element-bottom .dropdown p {
+     
     text-align: center;
     font-size: 0.6rem;
     margin-left: 1rem;/*-----*/
@@ -128,6 +127,7 @@ margin-bottom:2rem ;
 }
 
 .element-bottom .projects:before {
+    width: 20rem;
     height: 8rem;/*-----*/
 }
 
