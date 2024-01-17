@@ -124,10 +124,10 @@ margin-bottom:2rem ;
 
 .element-bottom .projects {
       color: white;
-    background: linear-gradient(-90deg, #563003 27.6%, rgba(56, 54, 154, 0.00) 100%);
+    background: linear-gradient(90deg, #563003 24.6%, rgba(56, 54, 154, 0.00) 100%);
 }
 
-.element-bottom .projects::before {
+.element-bottom .projects:before {
     height: 8rem;/*-----*/
 }
 
@@ -136,12 +136,8 @@ margin-bottom:2rem ;
     transition: opacity 0.6s;
 }
 
-.element-bottom .projects:active {
-    mix-blend-mode: plus-lighter;
-}
-
 .element-bottom .about-us {
-    background: linear-gradient(-90deg, #d38845 18.75%, rgba(87, 153, 247, 0.00) 100%);
+    background: linear-gradient(90deg, #d38845 24.75%, rgba(87, 153, 247, 0.00) 100%);
 }
 
 .element-bottom .about-us:hover {
@@ -153,13 +149,10 @@ margin-bottom:2rem ;
     transition: opacity 0.6s;
 }
 
-.element-bottom .about-us:active {
-    mix-blend-mode: plus-lighter;
-}
 
 .element-bottom .services {
     color: white;
-    background: linear-gradient(-90deg, #686868 34.38%, rgba(8, 255, 184, 0.00) 100%);
+    background: linear-gradient(90deg, #686868 24.38%, rgba(8, 255, 184, 0.00) 100%);
 }
 
 .element-bottom .services:hover {
@@ -170,12 +163,6 @@ margin-bottom:2rem ;
     opacity: 1;
     transition: opacity 0.6s;
 }
-
-.element-bottom .services:active {
-    mix-blend-mode: plus-lighter;
-}
-
-
 
 @media (min-width: 1500px) {
 
