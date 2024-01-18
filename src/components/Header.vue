@@ -1,8 +1,12 @@
 <script setup>
+import { ref } from 'vue';
 import { useStoreButtom } from '@/stores/traduction.js'
 import { useRouter } from 'vue-router';
 const storeButtom = useStoreButtom()
 const router = useRouter();
+const isServiceOpen = ref(false);
+const isAboutUsOpen = ref(false);
+const isContactOpen = ref(false);
 
 
 const goHome = () => {
@@ -20,6 +24,26 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
     // Hacer scroll hasta la posición final en la página
     window.scrollTo({ top: finalScrollPosition, behavior: 'smooth' });
 };
+const toggleServiceDropdown = () => {
+    isServiceOpen.value = !isServiceOpen.value;
+    // Cerrar los otros dropdowns si están abiertos
+    isAboutUsOpen.value = false;
+    isContactOpen.value = false;
+};
+
+const toggleAboutUsDropdown = () => {
+    isAboutUsOpen.value = !isAboutUsOpen.value;
+    // Cerrar los otros dropdowns si están abiertos
+    isServiceOpen.value = false;
+    isContactOpen.value = false;
+};
+
+const toggleContactDropdown = () => {
+    isContactOpen.value = !isContactOpen.value;
+    // Cerrar los otros dropdowns si están abiertos
+    isServiceOpen.value = false;
+    isAboutUsOpen.value = false;
+};
 </script>
 
 <template>
@@ -31,7 +55,7 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
 
     
       <div class="element-bottom ">
-        <div class="dropdown service  font-weight-bold" >
+        <div class="dropdown service  font-weight-bold" :class="{ 'open': isServiceOpen }" @click="toggleServiceDropdown" >
      <p class="text-center" >{{ storeButtom.buttonLeng ? 'disponemos de servicios para ayudarte a elegir' : 'we have services to help you choose' }} 
            <br>
            <v-Link class="font-weight-bold btnContect"  @click="scrollToTop(800, false) ">
@@ -41,7 +65,7 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
         </div>
 
 
-        <div class="dropdown about-us font-weight-bold" >
+        <div class="dropdown about-us font-weight-bold" :class="{ 'open': isAboutUsOpen }" @click="toggleAboutUsDropdown">
             <p class="text-center"  color="black">{{ storeButtom.buttonLeng ? 'ofrecemos una amplio catalogo de viviendas ' : 'Our people and our objectives' }}
                 <br>
             <v-link class="btnContactBlack font-weight-bold" @click="goHome">
@@ -49,7 +73,7 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
             </p>
           <h3>{{ storeButtom.buttonLeng ? 'Viviendas' : 'Homes' }}</h3>
         </div>
-        <div class="dropdown contact font-weight-bold">
+        <div class="dropdown contact font-weight-bold" :class="{ 'open': isContactOpen }" @click="toggleContactDropdown">
             <p class="text-center" >{{ storeButtom.buttonLeng ?'Puedes ponerte en contacto con nosotros ':'You can contact us'  }} 
                 <br>
                 <v-link class="font-weight-bold btnContect" @click="goContact"
@@ -60,6 +84,14 @@ const scrollToTop = (scrollPosition, scrollUp = true) => {
    </div>
 </template>
 <style scoped>
+.element-bottom .dropdown.open {
+  height: 10rem; /* Ajusta la altura del dropdown abierto según sea necesario */
+}
+
+.element-bottom .dropdown.open p {
+  opacity: 1;
+  transition: opacity 0.6s;
+}
 
 h1 {
    position: absolute;
@@ -132,10 +164,6 @@ margin-bottom:2rem ;
    
     height: 8rem;/*-----*/
 }
-.element-bottom .dropdown h3:before{
-    height: 8rem;
-}
-
 .element-bottom .service:hover p {
     opacity: 1;
     transition: opacity 0.6s;
