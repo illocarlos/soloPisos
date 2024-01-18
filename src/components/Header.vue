@@ -121,9 +121,7 @@ margin-bottom:2rem ;
     opacity: 0;
  
 }
-.element-bottom.dropdown h3:hover{
-    height: 8rem !important;
-}
+
 
 .element-bottom .service {
       color: white;
@@ -133,6 +131,9 @@ margin-bottom:2rem ;
 .element-bottom .service:hover {
    
     height: 8rem;/*-----*/
+}
+.element-bottom .dropdown h3:hover{
+    height: 8rem;
 }
 
 .element-bottom .service:hover p {
