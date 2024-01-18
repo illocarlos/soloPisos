@@ -132,7 +132,7 @@ margin-bottom:2rem ;
    
     height: 8rem;/*-----*/
 }
-.element-bottom .dropdown h3:hover{
+.element-bottom .dropdown h3:before{
     height: 8rem;
 }
 
@@ -246,7 +246,7 @@ color: black;
 }
 .element-bottom {
  
-    bottom: 13rem;/*-----*/
+    bottom: 10rem;/*-----*/
     margin-bottom: 41px;/*-----*/
 }
 .element-bottom .dropdown {
