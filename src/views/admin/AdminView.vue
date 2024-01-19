@@ -12,7 +12,7 @@ const { propertiesCollection,deleteItem } = useProperties()
     variant="flat"
     :to="{name:'admin-create'}"
     >
-        add propertie
+        add property
     </v-btn>
     <v-card class="mx-auto mt-10"
     flat>
@@ -39,13 +39,13 @@ class="mr-2"
 color="grey"
 :to="{name:'admin-edit',params:{id:propertie.id}}"
 flat>
-    edit
+    Edit
 </v-btn>
     <v-btn
     @click="deleteItem(propertie.id, propertie.photo)"
     color="red-darken-3"
     flat>
-        deleted
+        Deleted
     </v-btn>
   </template>
     </v-list-item>

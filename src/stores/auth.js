@@ -5,7 +5,11 @@ import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebas
 import { useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore('auth', () => {
+    //  Este hook probablemente encapsula la lógica para interactuar con el sistema de autenticación de Firebase.
+    //es decir autenticar los usuarios que tenemos en la base de fireabse
     const auth = useFirebaseAuth()
+    // este dato reactivo lo usamos para saber si tenemos un usuario dentro de la web ya que firebase se esta fuera lo define como null
+    // por eso lo predeterminamos como null y si hay alguien dentro lo llenamos
     const loggedInUser = ref(null)
     const errroMssg = ref("")
     const router = useRouter()
@@ -17,20 +21,31 @@ export const useAuthStore = defineStore('auth', () => {
     // onmounted monta al usuario que este logeado cuando un usuario inicia sesion se actualiza el objeto del usuario
     //asegurando que loggedInUser refleje al usuario en copncreto 
     onMounted(() => {
+        // Este método se utiliza para escuchar cambios en el estado de autenticación del usuario. es un metodo de firebase
+        //observa cuando un usuario inicia o cierra sesion
+        // le pasamos a firebase el auth como primer argumento 
+        // y user es un parámetro que contiene la información sobre el usuario actual si está autenticado, o null si no lo está.
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                // si user que vendra de firebase es true es decir contiene el  usuario  lo pasamos a nuestro valor reactivo loggedInUser
+                //sabiendo que null es falso es decir no entraria en la condicion por lo tanto no le pasamos el usuario y no esta logeado
                 loggedInUser.value = user
 
             }
         })
     })
 
+    // funcion que previamente creamos un formulario para rellenar valores en este caso email y password
+    //para que nos llegue la informacion del formulario que son las credentials
+
     function login(credentials) {
+
         signInWithEmailAndPassword(auth, credentials.email, credentials.password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 loggedInUser.value = user
+                // si entramos en la promesa y todo va ok nos manda a esta ruta 
                 router.push({ name: 'admin-properties' })
             })
             .catch(error => {

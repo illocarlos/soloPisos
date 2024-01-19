@@ -76,7 +76,7 @@ const submit = handleSubmit((values) => {
     class="mx-auto">
 <v-card-title class="text-center text-h4 font-weight-bold "
 tag="h2">
-    create a propertie
+    create a property
 </v-card-title>
   <v-form class="mt-10">
 <v-text-field

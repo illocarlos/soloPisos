@@ -82,7 +82,7 @@ const submit = handleSubmit(async values => {
 <template>
   <v-card max-width="800" flat class="mx-auto">
     <v-card-title class="text-center text-h4 font-weight-bold " tag="h2">
-      create a propertie
+      edit
     </v-card-title>
     <v-form class="mt-10">
       <v-text-field class="mb-5" label="Title of propertie" v-model="title.value.value"
