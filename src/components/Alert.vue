@@ -13,8 +13,11 @@ setTimeout(() => {
 <template>
   <div v-if="alert.show" class="alert-container">
 
-       <v-icon class="mr-4" color="success" icon="mdi-checkbox-marked-circle"/>
-               <p>{{ alert.text }}</p>
+       <v-icon v-if="!alert.error" class="mr-4" color="success" icon="mdi-checkbox-marked-circle"/>
+        <v-icon  v-else  class="mr-4" color="error" icon="mdi-cancel"/>
+               <p
+               class="font-weight-bold"
+               :class="alert.error?'AlertError':'SuccessError'">{{ alert.text }}</p>
   </div>
 </template>
 
@@ -33,7 +36,13 @@ setTimeout(() => {
   z-index: 100;
 
 }
-
-
+.AlertError{
+  text-transform: uppercase;
+color: red;
+}
+.SuccessError{
+    text-transform: uppercase;
+color: green;
+}
 
 </style>

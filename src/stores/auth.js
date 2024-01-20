@@ -44,6 +44,7 @@ export const useAuthStore = defineStore('auth', () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+
                 loggedInUser.value = user
                 // si entramos en la promesa y todo va ok nos manda a esta ruta 
                 router.push({ name: 'admin-properties' })

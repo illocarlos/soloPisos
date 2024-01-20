@@ -4,8 +4,10 @@ import { useFirestore } from 'vuefire'; // Si usas vuefire para Firebase
 import { useRouter } from 'vue-router'; // Importa el enrutador si estás usando Vue Router
 import { useStoreAlert } from '@/stores/alert'
 import { useStoreButtom } from '@/stores/traduction.js'
+
+
 export const useContactStore = defineStore('Contact', () => {
-    const alert = useStoreAlert()
+    const alert = useStoreAlert()  // llamamos a alert que se generara si la peticion es ok y se monstrara
     const db = useFirestore(); // Inicializa Firestore usando vuefire
     const router = useRouter(); // Inicializa el enrutador si estás usando Vue Router
     const storeButtom = useStoreButtom()
@@ -25,6 +27,8 @@ export const useContactStore = defineStore('Contact', () => {
         setTimeout(() => {
             alert.$reset()
         }, 3000)
+
+
         try {
             // mandamos a firebase el objeto creado del formulario
             const docRef = await addDoc(collection(db, 'contact'), contact);
@@ -32,6 +36,7 @@ export const useContactStore = defineStore('Contact', () => {
             if (docRef.id) {
                 router.push({ name: 'home' });
             }
+            // si de error enseñas ese mensaje 
         } catch (error) {
             console.error('Error creating property:', error);
             alert.show = true
@@ -41,12 +46,7 @@ export const useContactStore = defineStore('Contact', () => {
         }
     }
 
-
-
-
     return {
         createContact
-
-
     };
 });

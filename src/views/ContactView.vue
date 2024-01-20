@@ -8,6 +8,7 @@ const storeButtom = useStoreButtom()
 const alert = useStoreAlert()
 const useContact = useContactStore()
 
+// usamos este handlesubmit como cortafuego antes de enviar el formulario debemos llevarnos el objeto a los validadores
 const { handleSubmit } = useForm({
   ContactSchema: {
     ...ContactSchema,
@@ -21,7 +22,7 @@ const email = useField('email')
 const phone = useField('phone')
 
 const submit = handleSubmit((values) => {
-  if (Object.values(values.name).includes("")) {
+  if (Object.values(values).includes(undefined)) {
     alert.text = "fill in all the fields"
     alert.show = true
     alert.error = true
