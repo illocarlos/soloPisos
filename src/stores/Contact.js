@@ -20,8 +20,9 @@ export const useContactStore = defineStore('Contact', () => {
 
         alert.show = true
         storeButtom.buttonLeng ?
+            alert.text = 'se envio correctamente' :
             alert.text = 'was sent correctly'
-            : alert.text = 'se envio correctamente'
+
 
 
         setTimeout(() => {

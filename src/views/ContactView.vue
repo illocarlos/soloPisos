@@ -23,7 +23,7 @@ const phone = useField('phone')
 
 const submit = handleSubmit((values) => {
   if (Object.values(values).includes(undefined)) {
-    alert.text = "fill in all the fields"
+    storeButtom.buttonLeng ? alert.text = 'se envio correctamente' : alert.text = 'fill in all the fields'
     alert.show = true
     alert.error = true
     return
