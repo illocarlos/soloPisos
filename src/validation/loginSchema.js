@@ -11,11 +11,16 @@ export const loginSchema = {
         // si es un email válido esta formula es para validar 
         const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
         // y aqui la condicion si pasa esa formula y si no el mensaje de error
-        !regex.test(value) ? 'Invalid email' : true;
+        if (!regex.test(value)) {
+            return 'Email invalid';
+        }
+        return true;
     },
     // y aqui el password ya que cada uno pone el suyo y no hay uno estipulado 
     //pero podriamos poner en la condicion mayusculas numero etc... en este caso simplemente que salga
     password(value) {
-        value ? true : 'Password is required'
+        if (value) return true
+        return 'Password is required'
+
     }
 }

@@ -1,16 +1,15 @@
 <script setup>
 import { ref } from 'vue';
-import Header from '@/components/Header.vue';
 import useProperties from '@/composables/useProperties';
-import Services from '@/components/Services.vue'
 import Propertie from '@/components/Propertie.vue';
 import { useStoreButtom } from '@/stores/traduction.js'
 const storeButtom = useStoreButtom()
 
-const { filterclick, propertiesCollection, filterPropertie, filterproperties } = useProperties();
+const { filterclick, filterproperties } = useProperties();
 const pool = ref(false);
 const yard = ref(false);
 
+// este evento le mandamos filter y dentro esta los filtros que comprararemos en el store
 const submit = () => {
     const filters = {
         pool: pool.value,
@@ -29,6 +28,8 @@ const submit = () => {
        <v-card flat class="heigthView py-10">
           <v-form class="formFixed">
           <v-row>
+            <!-- formulario para crear un objeto para compararlo con las propiedades que tienen las key igual si son true o false 
+               se lo pasamos al store de las properties -->
     <v-col class="heigth" cols="12" md="6">
        <v-checkbox :label="storeButtom.buttonLeng ? 'piscina' : 'pool' "  v-model=" pool "></v-checkbox>
     </v-col>
@@ -50,6 +51,7 @@ const submit = () => {
           </v-form>
 
           <v-row >
+            <!-- mandamos como prop toda las propiedades (y cuando las filtramos) -->
              <Propertie v-for="prop in filterproperties" :key="prop.id" :prop="prop" />
           </v-row>
        </v-card>

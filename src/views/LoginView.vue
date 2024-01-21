@@ -16,6 +16,7 @@ const useAuth = useAuthStore()
 const email = useField('email')
 const password = useField('password')
 
+// en este submit le mandamos el valor del formulario al que autentticaremos y ver si pasa las credenciales
 const submit = handleSubmit((value) => {
   useAuth.login(value)
  

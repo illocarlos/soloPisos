@@ -9,15 +9,26 @@ import "leaflet/dist/leaflet.css";
 import useLocationMap from '@/composables/useLocationMap';
 import { LMap, LTileLayer, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
 import SpinnerVue from '@/components/Spinner.vue';
-
+// uso del mapa 
 const { zoom, center } = useLocationMap();
+// pasamos el traductor
 const storeButtom = useStoreButtom()
-const spinner=ref(false)
+// le mandamos dato reactivo para el spinner si es true o false
+const spinner = ref(false)
+// useRoute se utilizia para recoger la informacion de la ruta en la que se encuentra
+//normalmente se usa para recoger la informacion de un objeto concreto 
 const route = useRoute();
+
+// usamos este codigo para llamar a un objeto en concreto de firebae usando route.params.id
+// llamamos usefirestore por norma general siempre se llama como db 
 const db = useFirestore();
+// al igual que db docRef para introducirnos en firtebase
+//doc es palabra reservada en ella llamamos a firebase y en su db buscamos la base de dato que se llame properties y le mandamos la id
 const docRef = doc(db, 'properties', route.params.id);
+// y creamos una constante pasandole el objeto concreto atraves de la id que recogimos en los params
 const propertie = useDocument(docRef);
 
+// valores reactivo que se usan para funciones de los array de imagenes
 const numPhoto = ref(false);
 const selectedImage = ref(null);
 
@@ -55,6 +66,8 @@ onMounted(() => {
 </script>
 
 <template>
+
+  <!-- imagen grande que usamos para ver mejor cada una de las fotos  -->
     <v-card class="cardDetailsPropertie" flat>
         <v-card-title class="mt-5 text-h3 text-center py-5 font-weight-bold">
             {{ propertie?.title }}
@@ -63,12 +76,21 @@ onMounted(() => {
         <v-row class="my-10">
             
             <v-col cols="12" md="6" >
+              <!-- aqui generamos una condicion si tenemos una imagen selecionada elegimos esa imagen 
+                y si no elegimos la primera imagen del arry -->
                 <v-img class="responsiveimg"  v-if="numPhoto" cover :src="selectedImage" />
                 <v-img class="responsiveimg"  v-else cover :src="propertie?.photo[0]" />
                    <!-- Imágenes en miniatura -->
+
                         <v-row >
          <v-col
          cols="12">
+         <!-- carrusel de imagenes de vuetify que viene de serie en el hicimos un par de ajustes 
+        al poner cycle es rotacion automatica 
+        hide-delimiter-background Esta propiedad oculta el fondo del delimitador entre los elementos del ciclo.
+        show-arrows="hover" se usa para ocultar las flecha del carrusel y cuando pasas el raton aparecen es una forma
+      estetica de verlas
+    hide-delimiters: Esta propiedad oculta los delimitadores entre los elementos del ciclo. -->
       <v-carousel 
    class="custom-carousel" 
    height="100"
@@ -78,11 +100,17 @@ onMounted(() => {
       hide-delimiters
       >
 
+      <!-- creamos un spinner ya que tarda en generar las imagenes y es una forma de ver que carga 
+      hice prueba y las imagenes llegan rapido pero no encuentro el por que de que tarde tanto en que aparezca en el carrusel
+    por lo tanto lo hice manualmente cree un spinner con temporizador y si las imagenes aparecen antes de que el spinner se vaya 
+  no pasa nada ya que el spinner esta por debajo de las imagenes y no se vera  -->
        <template v-if="spinner">
                     <v-row justify="center" align="center" class="h-100">
                       <SpinnerVue class="spin" />
                     </v-row>
                   </template>
+                  <!-- carrusel de imagenes en si en el recogemos las imagenes de cada propiedad ya que es un array de imagenes  -->
+                  <!-- tenemos generado en un script para que podamos sacar 3 imagenes del carrusel -->
       <v-carousel-item    v-for="(group, groupIndex) in propertieChunks" :key="groupIndex">
         <v-row>
             <v-col v-for="(image, index) in group" :key="index" cols="4">
@@ -95,6 +123,8 @@ onMounted(() => {
             </v-row>
             </v-col>
             
+            <!-- aqui llamamos la informacion restante no tiene mucha logica  -->
+            <!-- lo unico que le ponemos un ternario a todo los datos para que aparezca cuando lo tenga  -->
             <v-col cols="12" md="5">
    <v-row style="height:470px;" class="property-description scrollable-column">
      <v-col cols="12" class="text-center font-weight-bold text-h3 " >
@@ -145,6 +175,7 @@ onMounted(() => {
                     :icon="propertie?.yard ? 'mdi-checkbox-marked-circle' : 'mdi-cancel'"/>
               </v-col>
         </v-row>
+        <!-- mapa de ubicacion  -->
        <div  style="height:450px;">
                     <LMap v-model:zoom="zoom" :center="center" :use-global-leaflet="false">
                         <LMarker :lat-lng="center">

@@ -15,13 +15,18 @@ const { handleSubmit } = useForm({
   }
 });
 
-
+// usamos usefield que es la forma de crear cada parte del formulario 
+//es  obligatorio este usefield si queremos crear un objeto usefor es la forma de crear validadores pero no es obligatorios
 const name = useField('name')
 const description = useField('description')
 const email = useField('email')
 const phone = useField('phone')
 
+// generamos el submit en el usamos el evento y antes de pasar al evento vamos a otro evento en este caso los validadores 
+//y una vez pasan y estan todos true entramos en este evento 
 const submit = handleSubmit((values) => {
+  // al entrar en este evento tenemos una condicion si todo el objeto contiene algun undefined entra si no 
+  // lo mandamos al store de contacto para generar el contacto 
   if (Object.values(values).includes(undefined)) {
     storeButtom.buttonLeng ? alert.text = 'rellena todo los campos' : alert.text = 'fill in all the fields'
     alert.show = true

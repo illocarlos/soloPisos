@@ -7,7 +7,7 @@ import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 
-// Firebase
+// Firebase install
 import { VueFire, VueFireAuth } from 'vuefire';
 import { firebaseApp } from './config/firebase.js';
 
@@ -15,6 +15,7 @@ import App from './App.vue';
 import router from './router';
 
 import './assets/main.css';
+// importas fuente y material desing
 import '@mdi/font/css/materialdesignicons.css';
 
 

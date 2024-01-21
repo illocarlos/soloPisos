@@ -33,26 +33,40 @@ export default function useProperties() {
         }
     }
     const filterclick = (value) => {
+        // propertiesCollection es una variable reactiva que contiene la colección de propiedades
+        const filteredProperties = propertiesCollection.value.filter((property) => {
 
-        const filteredProperties = propertiesCollection.value.filter(propertie => {
 
-            if (value.pool && value.yard) {
 
-                return propertie.pool === value.pool && propertie.yard === value.yard;
+            if (value.pool === true && value.yard === true) {
 
-            } else if (value.pool && !value.yard) {
+                // Filtrar propiedades que tienen tanto piscina como patio
+                return property.pool === value.pool && property.yard === value.yard;
 
-                return propertie.pool === value.pool
+            } else if (value.pool === false && value.yard === false) {
 
-            } else if (value.yard && !value.pool) {
+                // Filtrar propiedades que tienen tanto piscina como patio
 
-                return propertie.yard === value.yard
+                return property.pool === value.pool && property.yard === value.yard;
+
+            } else if (value.pool === true && value.yard === false) {
+
+                // Filtrar propiedades que solo tienen piscina
+                return property.pool === true && property.yard === false;
+
+            } else if (value.pool === false && value.yard === true) {
+
+                // Filtrar propiedades que solo tienen patio
+                return property.yard === true && property.pool === false;
 
             } else {
-                return propertie;
+                // Si no se especifican criterios de filtro, devolver todas las propiedades
+                return property;
             }
         });
-        filterPropertie.value = filteredProperties
+
+        // filterPropertie es una variable reactiva que se actualiza con las propiedades filtradas
+        filterPropertie.value = filteredProperties;
     };
 
     const filterproperties = computed(() => {
