@@ -32,29 +32,47 @@ const propertie = useDocument(docRef);
 const numPhoto = ref(false);
 const selectedImage = ref(null);
 
+
+// esta funcion es la usada para plasmar en la img mas grande una de las fotos del carrusel 
+// le pasamos el index que viene de el carrusel 
 const selectImage = (index) => {
-    selectedImage.value = propertie.value.photo[index];
+  selectedImage.value = propertie.value.photo[index];
+  // le pasamos numphoto a true para que la condicion de las imagenes de abajo se cumpla 
+  //y desaparezca la imagen [0] del array predefinida que teniamos para asi colocar la sleccionada que le damos el valor
+    //en la linea de arriba
     numPhoto.value = true;
 };
 
+// observamos la ubicacion de propertie
 watch(propertie, (newPropertie) => {
     center.value = newPropertie.ubication;
 });
 
+// usamos propertieChunks para encapsular la logica utilizando computed que es una funcion que si hay algun cambio en alguno de los datos 
+//se vuelve a activar la funcion por lo tanto siempre esta como en un bucle 
 const propertieChunks = computed(() => {
-   
+    // creamos un filtro con una condicion si alguna de ellas es true retorna array vacio para no generar un error y si es false sigue el codigo
     if (!propertie.value || !propertie.value.photo || propertie.value.photo.length === 0) return [];
-    
-    const chunkSize = 3;
+
+    // chunkSizees lo usamos en el bucle for como limitador para parar el bucle
+  const chunkSize = 3;
+    // array en el que vamos a introducir las fotos
     const photoChunks = [];
-    
-    for (let i = 0; i < propertie.value.photo.length; i += chunkSize) {
-        const chunk = propertie.value.photo.slice(i, i + chunkSize);        
+
+  // es decir ponemos el tope de 3 por que son las imagenes que se van a mostrar y como es un computed si pasamos esas 3 imagenes 
+  //generamos un cambio y tiene que volver a paras la funcion computed 
+  for (let i = 0; i < propertie.value.photo.length; i += chunkSize) {
+      //  Se utiliza el método slice para extraer un fragmento 
+    //de fotos desde el índice i hasta i + chunkSize.Este fragmento se almacena en la variable chunk.
+      //utilizamos la posicion de cada loop como posicion y cantidad 
+    const chunk = propertie.value.photo.slice(i, i + chunkSize);  
+              // y le pasamos a un array cada una de las imagenes 
         photoChunks.push(chunk);
     }
-    
+    // retornando esta
     return photoChunks;
 });
+// se monta el spinner direactemen al abrir la ruta
 onMounted(() => {
     spinner.value=true
     setTimeout(() => {
@@ -77,7 +95,9 @@ onMounted(() => {
             
             <v-col cols="12" md="6" >
               <!-- aqui generamos una condicion si tenemos una imagen selecionada elegimos esa imagen 
-                y si no elegimos la primera imagen del arry -->
+                y si no elegimos la primera imagen del array  
+                el src es dinamico mostrara la imagen en funcion a la arrow function que le dimos
+                  explicamos en el script el significado de esta funcion-->
                 <v-img class="responsiveimg"  v-if="numPhoto" cover :src="selectedImage" />
                 <v-img class="responsiveimg"  v-else cover :src="propertie?.photo[0]" />
                    <!-- Imágenes en miniatura -->

@@ -13,6 +13,7 @@ export const useCountriesStore = defineStore('countries', () => {
         const { data } = await ApiService.getPrefixed()
         allCountries.value = data   // y despues ese data lo pasamos a allcountries
 
+
         allCountries.value.forEach(each => {  // y aqui generamos el filtro
             if (typeof each.idd.root !== "undefined" && typeof each.idd.suffixes !== "undefined") { // generamos esta condicion que excluya estos objetos 
                 prefixed.value.push(`${each.flag} ${each.idd.root}${each.idd.suffixes[0]}`);

@@ -7,6 +7,7 @@ const { propertiesCollection,deleteItem } = useProperties()
 
 <template>
     <h2 class="text-center text-h3 my-5 font-weight-bold">ADMIN PANEL</h2>
+    <!-- boton que  te dirige a la crecion de propiedad -->
     <v-btn
     color="grey"
     variant="flat"
@@ -17,11 +18,11 @@ const { propertiesCollection,deleteItem } = useProperties()
     <v-card class="mx-auto mt-10"
     flat>
 <v-list>
+    <!-- generamos toda las propiedades -->
     <v-list-item
     v-for="propertie in propertiesCollection"
     :key="propertie.id"
     >
-
     <template
     v-slot:prepend
     >
@@ -34,6 +35,9 @@ const { propertiesCollection,deleteItem } = useProperties()
   <template
   v-slot:append>  
 
+ <!-- esta es la parte mas importante de esta view en cada boton tenemos un evento 
+en el edit mandamos al ususario a la ruta creada pero con ella lo mandamos con los parametros de esa id y asi poder
+ recoger la informacion completa-->
 <v-btn
 class="mr-2"
 color="grey"
@@ -41,6 +45,8 @@ color="grey"
 flat>
     Edit
 </v-btn>
+<!-- en este boton creamos un evento para eliminar esa propiedad pasandole su id y todas sus imagenes que esta en el composable
+     de properties   -->
     <v-btn
     @click="deleteItem(propertie.id, propertie.photo)"
     color="red-darken-3"

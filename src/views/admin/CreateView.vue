@@ -58,11 +58,12 @@ watch(() => phone.value.value, (value) => {
     // Utilize the function to format the number
     phone.value.value = formatPhoneNumber(stringValue).formattedNumber;
 });
-
+// funcion para limpiar el array de imagenes  y generar una nuevo array de imagenes 
  function resetFileInput() {
      $reset()
  }
-    
+
+//  mandamos la informacion del formulario pero antes debe pasar los validadores una vez lo pasa lo mandamos al store
 const submit = handleSubmit((values) => {
    
     useProperties.createProperties(values, imageUrls, center)
@@ -85,6 +86,9 @@ label="Title of propertie"
 v-model="title.value.value"
 :error-messages="title.errorMessage.value"/>
 
+<!-- 
+en este input de imagenes tenemos dos funciones una que manda las imagenes a la funcion uploadImage al cargarlas
+y la otra que al pulsar el boton clean que es una X se resete -->
     <v-file-input
           accept="image/jpeg"
           label="photo"
