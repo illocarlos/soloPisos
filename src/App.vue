@@ -8,6 +8,7 @@ import { useStoreButtom } from '@/stores/traduction.js';
 import Foother from '@/components/Foother.vue';
 import { onMounted, ref } from 'vue';
 
+import { SpeedInsights } from '@vercel/speed-insights/vue';
 
 const storeButtom = useStoreButtom();
 const isNavbarTransparent = ref(false);
@@ -125,7 +126,7 @@ onMounted(() => {
   </v-main>
 
   </v-layout>
-
+    <SpeedInsights />
 </template>
 <style>
 .barAppend{
