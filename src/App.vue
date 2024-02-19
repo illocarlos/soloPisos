@@ -8,7 +8,7 @@ import { useStoreButtom } from '@/stores/traduction.js';
 import Foother from '@/components/Foother.vue';
 import { onMounted, ref } from 'vue';
 
-import { AnalyticsProps } from '@vercel/analytics/*';
+import { Analytics } from '@vercel/analytics/vue';
 
 const storeButtom = useStoreButtom();
 const isNavbarTransparent = ref(false);
@@ -126,7 +126,7 @@ onMounted(() => {
   </v-main>
 
   </v-layout>
-  <AnalyticsProps/>
+  <Analytics/>
 </template>
 <style>
 .barAppend{
