@@ -8,7 +8,7 @@ import { useStoreButtom } from '@/stores/traduction.js';
 import Foother from '@/components/Foother.vue';
 import { onMounted, ref } from 'vue';
 
-import { Analytics } from '@vercel/analytics/vue';
+import { Analytics } from '@vercel/analytics/react';
 
 const storeButtom = useStoreButtom();
 const isNavbarTransparent = ref(false);
