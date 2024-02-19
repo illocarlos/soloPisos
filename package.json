@@ -13,6 +13,7 @@
     "@heroicons/vue": "^2.1.1",
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
+    "@vercel/analytics": "^1.2.1",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "@vueuse/core": "^10.7.2",
     "axios": "^1.6.5",

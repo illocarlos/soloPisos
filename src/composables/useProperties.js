@@ -70,6 +70,10 @@ export default function useProperties() {
     };
 
     const filterproperties = computed(() => {
+        if (filterPropertie.value === 0) {
+
+        }
+
 
         return filterPropertie.value.length > 0 ?
             filterPropertie.value :
